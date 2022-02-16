@@ -1,8 +1,12 @@
-<!-- 1. Create the HTML you need What elements does the form need?
-2. Figure out what a form submit actually means / does
-3. How to get the form data after the submit?
-4. Calculate the amount in the desired valuta
-5. Figure out a way to provide this data in the HTML -->
+<?php
+$result = 0 ;
+$rupees_rate = 200.68;
+if ($_GET["currency_option"] === "Rupees"){
+    $result = $rupees_rate * $_GET["input_currency"];
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,20 +18,20 @@
 <body>
   <h1>Going to Pakistan?</h1>  
   <p>Let me help you convert your Euros to Rupees</p>
-  <form action="" method="POST">
+  <form action="" method="get">
 
     <label for="input_currency">
         <input type="number" name="input_currency" id="input_currency" placeholder="Enter amount in EUR">
     </label>
    <span> Convert to:</span>
-    <select>
-        <option value="">Pakistani Rupees</option>
+    <select name="currency_option">
+        <option value="Rupees">Pakistani Rupees</option>
     </select>
     
     <input type="submit" value="convert">
     
     <!-- <br> -->
-<!-- 
+    <!-- 
     <label for="output_currency">
         <input type="number" name="output_currency" id="output_currency">
     </label>
@@ -36,12 +40,8 @@
     </select> -->
   </form>
 
-  <p>You will get: <?php echo "result goes here"; ?> </p>
+  <p>You will get: <?php echo $result ?> </p>
 </body>
 </html>
-
-<?php
-
-?>
 
 
